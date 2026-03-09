@@ -4,9 +4,7 @@ export default function decorate(block) {
 
   const url = new URL(link.href);
 
-  const videoId =
-    url.searchParams.get('v') ||
-    url.pathname.split('/').pop();
+  const videoId = url.searchParams.get('v') || url.pathname.split('/').pop();
 
   // Get custom image if exists
   const image = block.querySelector('img');
