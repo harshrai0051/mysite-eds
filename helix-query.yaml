@@ -1,0 +1,21 @@
+version: 4
+ 
+indices:
+  pages:
+    include:
+      - "/**"
+    target: /query-index.json
+    properties:
+      title:
+        select: main h1
+        value: textContent(el)
+      description:
+        select: head > meta[name="description"]
+        value: attribute(el, "content")
+      image:
+        select: head > meta[property="og:image"]
+        value: match(attribute(el, "content"),
+          "^(https?:\/\/.*?(danaher.com))+(.*)|^(.*)")
+      publishDate:
+        select: head > meta[name="published-time"]
+        value: parseTimestamp(attribute(el, "content"), "ddd, DD MMM YYYY hh:mm:ss GMT")
