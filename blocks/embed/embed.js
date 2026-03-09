@@ -1,5 +1,4 @@
 export default function decorate(block) {
-
   const link = block.querySelector('a');
   if (!link) return;
 
@@ -9,10 +8,11 @@ export default function decorate(block) {
     url.searchParams.get('v') ||
     url.pathname.split('/').pop();
 
-  // 🔹 Get custom image if exists
+  // Get custom image if exists
   const image = block.querySelector('img');
-  const thumbnail = image ? image.src :
-    `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+  const thumbnail = image
+    ? image.src
+    : `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
 
   block.innerHTML = `
     <div class="embed-placeholder">
@@ -23,10 +23,10 @@ export default function decorate(block) {
 
   const placeholder = block.querySelector('.embed-placeholder');
 
-  placeholder.addEventListener('click', function () {
+  placeholder.addEventListener('click', () => {
     block.innerHTML = `
       <div style="position:relative; padding-bottom:56.25%; height:0;">
-        <iframe 
+        <iframe
           src="https://www.youtube.com/embed/${videoId}?autoplay=1"
           allow="autoplay; encrypted-media"
           allowfullscreen
